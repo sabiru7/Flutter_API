@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'posts.dart'; // Pastikan Anda memiliki file posts.dart yang sesuai
+import 'posts.dart'; 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Colors.grey[100], // Warna latar belakang
+        scaffoldBackgroundColor: Colors.grey[100], 
       ),
       home: PostsPage(),
     );
@@ -51,10 +51,10 @@ class PostsPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final post = posts[index];
               return Card(
-                elevation: 8, // Bayangan yang lebih dalam
+                elevation: 8,
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12), // Sudut melengkung
+                  borderRadius: BorderRadius.circular(12), 
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -63,7 +63,7 @@ class PostsPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.article, color: Colors.blue), // Ikon untuk konteks
+                          Icon(Icons.article, color: Colors.blue),
                           const SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
@@ -112,7 +112,6 @@ class Post {
   }
 }
 
-// Fungsi untuk mengambil data post
 Future<List<Post>> fetchPosts() async {
   final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
 
