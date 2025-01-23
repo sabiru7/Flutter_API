@@ -33,7 +33,7 @@ class PostsPage extends StatelessWidget {
         title: const Text('Posts'),
       ),
       body: FutureBuilder<List<Post>>(
-        future: fetchPosts(), // Ganti dengan fungsi fetchPosts Anda
+        future: fetchPosts(), 
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
