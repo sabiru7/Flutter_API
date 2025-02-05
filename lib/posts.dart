@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'http_service.dart';
 import 'post_model.dart';
+import 'post_detail.dart';
 
 class PostsPage extends StatelessWidget {
   final HttpService _httpService = HttpService();
@@ -17,7 +18,7 @@ class PostsPage extends StatelessWidget {
         future: _httpService.getPosts(),
         builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
           if (snapshot.hasData) {
-            return _buildPostList(snapshot.data!);
+            return _buildPostList(context, snapshot.data!);
           } else if (snapshot.hasError) {
             return _buildError(snapshot.error.toString());
           } else {
@@ -28,7 +29,7 @@ class PostsPage extends StatelessWidget {
     );
   }
 
- Widget _buildPostList(List<Post> posts) {
+  Widget _buildPostList(BuildContext context, List<Post> posts) {
     return ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) {
@@ -36,6 +37,14 @@ class PostsPage extends StatelessWidget {
         return ListTile(
           title: Text(post.title),
           subtitle: Text("User ID: ${post.userId}"),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostDetail(post: post),
+              ),
+            );
+          },
         );
       },
     );
